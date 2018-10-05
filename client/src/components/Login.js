@@ -24,6 +24,9 @@ export default class Login extends Component {
       newUser: {}
   }
 
+///// SETTING THE STATE OF OUR COMPONENT ////////
+///// AND RETRIEVING THE DATA FROM THE API. /////
+
 componentDidMount = async () => {
     const response = await axios.get('/api/users')
     this.setState({ users: response.data })
@@ -37,6 +40,9 @@ handleChange = (event) => {
     newUser[event.target.name] = event.target.value
     this.setState({ newUser })
 }
+
+///// HANDLES THE SUBMIT EVENT, ADJUSTING ///////////
+///// THE PAGE WITHOUT REFRESHING THE BROWSER. //////
 
 handleSubmit = async (event) => {
     event.preventDefault()
