@@ -26,6 +26,10 @@ export default class IdeaBoard extends Component {
     ideas: []
   }
 
+///// THE GETUSER FUNCTION RETRIEVES THE USER FROM ///
+///// THE API USING AXIOS AND SETS THE STATE OF THE //
+///// USER SPECIFYING THE USER'S DATA AND IDEAS. /////
+
   getUser = async () => {
     const userId = this.props.match.params.userId
     const response = await axios.get(`/api/users/${userId}`)
@@ -39,17 +43,24 @@ export default class IdeaBoard extends Component {
     this.getUser()
   }
 
+////// HANDLES ADDING A NEW USER TO THE BOARD. //////
+
   handleNew = async () => {
     const userId = this.props.match.params.userId
     const newIdea = await axios.post(`/api/users/${userId}/ideas`)
     await this.getUser()
   }
 
+///// HANDLES DELETING THE USER FROM THE BOARD. //////
+
   handleDelete = async (ideaId) => {
     const userId = this.props.match.params.userId
     await axios.delete(`/api/users/${userId}/ideas/${ideaId}`)
     await this.getUser()
   }
+
+///// HANDLES THE CHANGE EVENT, ADJUSTING ////////////
+///// THE PAGE WITHOUT REFRESHING THE BROWSER. ///////
 
   handleChange = (event, i) => {
     // take it out
@@ -59,6 +70,8 @@ export default class IdeaBoard extends Component {
     // put it back
     this.setState({ ideas })
   }
+
+///// UPDATING THE EDITED IDEA USING DATA FROM THE API. /////
 
   updateIdea = async (i) => {
     const userId = this.props.match.params.userId
