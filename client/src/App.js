@@ -4,6 +4,9 @@ import IdeaBoard from './components/IdeaBoard'
 import Home from './components/Home'
 import Login from './components/Login'
 
+///// APP SERVES TO RENDER EACH ////////////
+///// OF OUR COMPONENTS IN THE BROWSER /////
+
 class App extends Component {
   render() {
     return (
@@ -11,6 +14,7 @@ class App extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
+          <Route exact path='/users/:userId' component={IdeaBoard}/>
         </Switch>
       </Router>
     )

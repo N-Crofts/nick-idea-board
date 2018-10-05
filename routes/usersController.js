@@ -2,14 +2,13 @@ const router = require('express').Router()
 const { User } = require('../db/model')
 
 
-//////////  S H O W   A L L  ////////////////
-/// (with dot-then promise version below) ///
+////////////  S H O W   A L L  ////////////////
+/// ( with dot-then promise version below ) ///
 
 router.get('/', async (req, res) => {
   const response = await User.find()
   res.send(response)
 })
-
 
 // router.get('/', (req, res) => {
 //   User.find()
@@ -19,8 +18,8 @@ router.get('/', async (req, res) => {
 // })
 
 
-//////////  S H O W   O N E  //////////////
-////// (with alternate find method) ///////
+/////////////  S H O W   O N E  //////////////
+/////// ( with alternate find method ) ///////
 
 router.get('/:id', async (req, res) => {
   // const user = await User.find({ _id: req.params.id})
@@ -29,7 +28,7 @@ router.get('/:id', async (req, res) => {
 })
 
 
-//////////  C R E A T E  //////////
+///////////////  C R E A T E  ////////////////
 
 router.post('/', async (req, res) => {
   const user = await User.create(req.body)
@@ -37,7 +36,7 @@ router.post('/', async (req, res) => {
 })
 
 
-/////////  U P D A T E  //////////
+///////////////  U P D A T E  ////////////////
 
 router.put('/:id', async (req, res) => {
   const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true })
@@ -45,7 +44,7 @@ router.put('/:id', async (req, res) => {
 })
 
 
-//////////  D E L E T E  //////////
+///////////////  D E L E T E  ////////////////
 
 router.delete('/:id', async (req, res) => {
   await User.findByIdAndRemove(req.params.id)
